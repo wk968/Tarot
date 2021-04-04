@@ -6,7 +6,7 @@ class Card:
         self.value = val
     
     def show(self):
-        print("{} of {}".format(self.value,self.suit))
+        return ("{} of {}".format(self.value,self.suit))
 
 class Deck:
     def __init__(self):
@@ -32,6 +32,7 @@ class Deck:
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
     def draw(self):
-        return self.cards.pop()
+        hand = self.cards.pop()
+        return hand
 
 
