@@ -15,23 +15,27 @@ async def info(ctx):
     embed.set_author(name='Mitsukii-#8263', url='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO')
     await ctx.send(ctx.message.channel, embed=embed)
 
-@client.command()
+@client.command(pass_context = True)
 async def tarot(ctx):
     
-    embed = discord.Embed(title="Ask the deck a question before drawing the card :pray:", description="Click the shuffle button to shuffle the deck!")
+    embed = discord.Embed(title="Ask the deck a question before drawing the card :pray:", description="Click the shuffle button to shuffle the deck!")   
     msg = await ctx.send(embed=embed)
     await msg.add_reaction('🔄')
+    await ctx.message.delete()
     def check(reaction, user):
         return user == ctx.author
     try:
-        deck.shuffle()
+        
         await client.wait_for('reaction_add', timeout = 30.0, check = check)
+        deck.shuffle()
         await msg.delete()
-        msg = await ctx.send("Deck has been shuffled, draw a card now!")
+        embed = discord.Embed(title="Deck has been shuffled", description="Draw a card now!")
+        msg = await ctx.send(embed=embed)
         await msg.add_reaction('☝️')
         try:
             await client.wait_for('reaction_add', timeout = 30.0, check = check)
-            await ctx.send('This is your card: ' + deck.draw())
+            embed = discord.Embed(title="This is your card", description=)
+            await ctx.send(embed=embed)
         except:
             await msg.delete()
     except:
@@ -41,4 +45,4 @@ async def tarot(ctx):
 
     
 
-client.run('ODI3ODE1MzczNTA4MTgyMDE2.YGghJQ.y7b2pC2sT5FXL6IKHQeB4Y8ZpqQ')
+client.run('')
