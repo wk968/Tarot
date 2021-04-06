@@ -1,4 +1,5 @@
 import random
+import json
 
 class Card:
     def __init__(self,suit,val):
@@ -16,7 +17,7 @@ class Deck:
     def build(self):
         for a in ["Cups","Pentacles","Swords","Wands","Major"]:
             if a=="Major":
-                for b in range (1,23):
+                for b in range (0,22):
                     self.cards.append(Card(a,b))
             else:
                 for b in range (1,15):
@@ -32,7 +33,13 @@ class Deck:
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
     def draw(self):
-        hand = self.cards.pop()
-        return hand
+        card = self.cards.pop()
+        return card.show()
 
+f = open('cards.json')
+x = json.load(f)
+t1 = "Major"
+test = x[t1][0]['name']
+print(test)
 
+        
