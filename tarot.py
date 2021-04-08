@@ -36,10 +36,5 @@ class Deck:
         card = self.cards.pop()
         return card.show()
 
-f = open('cards.json')
-x = json.load(f)
-t1 = "Major"
-test = x[t1][0]['name']
-print(test)
 
         
